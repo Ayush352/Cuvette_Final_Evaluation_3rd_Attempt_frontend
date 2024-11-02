@@ -10,7 +10,12 @@ import './Toast.css';
 const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChecklist, collapseToggle, onStatusChange, onDeleteTask,onEdit,assignTo,isAssigned,
     createdBy}) => {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [localChecklist, setLocalChecklist] = useState(checklist);
+    const [localChecklist, setLocalChecklist] = useState(
+        checklist.map(item => ({
+            ...item,
+            isCompleted: item.isCompleted || false
+        }))
+    );
     const [isUpdating, setIsUpdating] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
@@ -27,7 +32,12 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
     );
 
     useEffect(() => {
-        setLocalChecklist(checklist);
+        setLocalChecklist(
+            checklist.map(item => ({
+                ...item,
+                isCompleted: item.isCompleted || false
+            }))
+        );
     }, [checklist]);
 
     const allStatuses = [
@@ -219,6 +229,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
             setIsUpdating(false);
         }
     };
+
 
 
     const formatDate = (date) => {

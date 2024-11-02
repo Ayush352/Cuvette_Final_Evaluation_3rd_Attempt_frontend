@@ -142,23 +142,22 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
                     .filter(item => item.text.trim())
                     .map(item => ({ 
                         text: item.text.trim(), 
-                        isCompleted: false
+                        isCompleted: item.completed || item.isCompleted || false
                     })),
                 dueDate,
                 assignTo: assignee,
                 status: 'todo'
             };
-
+    
             const response = await axios.post('https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks', task, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             });
-
+    
             if (response.data.success) {
-                const savedTask = response.data.task;
-                onSave(savedTask);
+                onSave(response.data.task);
                 resetForm();
                 onClose();
             }
