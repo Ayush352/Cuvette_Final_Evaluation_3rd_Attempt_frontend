@@ -133,7 +133,7 @@ const fetchTasks = async () => {
   try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:4000/getTasks?filter=${timeFilter}`, {
+      const response = await axios.get(`https://cuvette-final-evaluation-3rd-attempt.onrender.com/getTasks?filter=${timeFilter}`, {
           headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -223,7 +223,7 @@ useEffect(() => {
 
     const handleDeleteTask = async (taskId) => {
       try {
-          const response = await axios.delete(`http://localhost:4000/tasks/${taskId}`, {
+          const response = await axios.delete(`https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks/${taskId}`, {
               headers: {
                   'Authorization': `Bearer ${localStorage.getItem('token')}`
               }

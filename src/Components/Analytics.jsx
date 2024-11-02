@@ -23,7 +23,7 @@ const Analytics = () => {
         const fetchTaskStats = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:4000/getTasks', {
+                const response = await axios.get('https://cuvette-final-evaluation-3rd-attempt.onrender.com/getTasks', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 

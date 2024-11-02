@@ -5,7 +5,7 @@ import "./TaskCard.css";
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './Toast.css';  // Import the custom styles
+import './Toast.css'; 
 
 const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChecklist, collapseToggle, onStatusChange, onDeleteTask,onEdit,assignTo,isAssigned,
     createdBy}) => {
@@ -73,7 +73,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
         setShowMenu(false); 
         try {
             const response = await axios.post(
-                `http://localhost:4000/tasks/${id}/share`,
+                `https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks/${id}/share`,
                 {},
                 {
                     headers: {
@@ -111,7 +111,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
     const handleStatusChange = async (newStatus) => {
         try {
             const response = await axios.patch(
-                `http://localhost:4000/tasks/${id}/status`,
+                `https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks/${id}/status`,
                 { status: newStatus },
                 {
                     headers: {
@@ -192,7 +192,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
     
         try {
             const response = await axios.patch(
-                `http://localhost:4000/tasks/${id}/checklist/${checklistItemId}`,
+                `https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks/${id}/checklist/${checklistItemId}`,
                 { isCompleted: !isCompleted },
                 {
                     headers: {

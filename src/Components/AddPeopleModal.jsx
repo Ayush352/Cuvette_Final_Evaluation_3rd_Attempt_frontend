@@ -23,7 +23,7 @@ const AddPeopleModal = ({ isOpen, onClose }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/users', {
+                const response = await axios.get('https://cuvette-final-evaluation-3rd-attempt.onrender.com/users', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -56,7 +56,7 @@ const AddPeopleModal = ({ isOpen, onClose }) => {
 
         try {
             const response = await axios.post(
-                'http://localhost:4000/inviteUser',
+                'https://cuvette-final-evaluation-3rd-attempt.onrender.com/inviteUser',
                 { email },
                 {
                     headers: {

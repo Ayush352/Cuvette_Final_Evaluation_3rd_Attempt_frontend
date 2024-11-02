@@ -55,7 +55,7 @@ const Settings = () => {
 
         try {
             const token = localStorage.getItem('token');
-            let endpoint = 'http://localhost:4000/settings/';
+            let endpoint = 'https://cuvette-final-evaluation-3rd-attempt.onrender.com/settings/';
             let data = {};
 
             if (updateField === 'password') {

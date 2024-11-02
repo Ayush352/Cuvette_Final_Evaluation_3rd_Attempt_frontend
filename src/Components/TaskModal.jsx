@@ -44,7 +44,7 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/users', {
+                const response = await axios.get('https://cuvette-final-evaluation-3rd-attempt.onrender.com/users', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -149,7 +149,7 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
                 status: 'todo'
             };
 
-            const response = await axios.post('http://localhost:4000/tasks', task, {
+            const response = await axios.post('https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks', task, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`

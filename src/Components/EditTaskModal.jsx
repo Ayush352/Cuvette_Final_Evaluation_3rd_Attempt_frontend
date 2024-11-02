@@ -48,7 +48,7 @@ const EditTaskModal = ({ isOpen, onClose, task, onUpdate }) => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/users', {
+                const response = await axios.get('https://cuvette-final-evaluation-3rd-attempt.onrender.com/users', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -143,7 +143,7 @@ const EditTaskModal = ({ isOpen, onClose, task, onUpdate }) => {
             };
     
             const response = await axios.patch(
-                `http://localhost:4000/tasks/${task.id}`,
+                `https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks/${task.id}`,
                 updatedTask,
                 {
                     headers: {

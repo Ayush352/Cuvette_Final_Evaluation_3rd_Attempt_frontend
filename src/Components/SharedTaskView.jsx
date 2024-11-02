@@ -13,7 +13,7 @@ const SharedTaskView = () => {
         const fetchTask = async () => {
             try {
                 const shareId = window.location.pathname.split('/share/')[1];
-                const response = await axios.get(`http://localhost:4000/tasks/share/${shareId}`);
+                const response = await axios.get(`https://cuvette-final-evaluation-3rd-attempt.onrender.com/tasks/share/${shareId}`);
                 setTask(response.data.task);
             } catch (err) {
                 setError('Task not found or link has expired');
