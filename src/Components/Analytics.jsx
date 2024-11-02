@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Analytics.css';
 import Sidebar from './Sidebar';
+import Loader from './Loader';
 
 const Analytics = () => {
     const [taskStats, setTaskStats] = useState({
@@ -18,9 +19,11 @@ const Analytics = () => {
         },
         dueDateTasksCount: 0
     });
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchTaskStats = async () => {
+            setLoading(true);
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.get('https://cuvette-final-evaluation-3rd-attempt.onrender.com/getTasks', {
@@ -54,6 +57,9 @@ const Analytics = () => {
             } catch (error) {
                 console.error('Error fetching task statistics:', error);
             }
+            finally{
+                setLoading(false);
+            }
         };
 
         fetchTaskStats();
@@ -63,6 +69,7 @@ const Analytics = () => {
         <div className="dashboard-container">
             <Sidebar />
             <div className="analytics-page">
+            {loading && <Loader />}
                 <div className="analytics-container">
                     <h1 className="analytics-title">Analytics</h1>
                     

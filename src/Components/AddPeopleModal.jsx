@@ -6,6 +6,7 @@ import './AddPeopleModal.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Toast.css';
+import Loader from './Loader';
 
 const AddPeopleModal = ({ isOpen, onClose }) => {
     const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ const AddPeopleModal = ({ isOpen, onClose }) => {
     const [users, setUsers] = useState([]);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
+    const [loading, setLoading] = useState(false);
 
     const customToast = () => (
         <div className="custom-toast">
@@ -47,6 +49,7 @@ const AddPeopleModal = ({ isOpen, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         setError('');
 
         if (!email.trim()) {
@@ -81,6 +84,9 @@ const AddPeopleModal = ({ isOpen, onClose }) => {
         } catch (err) {
             setError(err.response?.data?.error || 'Failed to add user');
         }
+        finally{
+            setLoading(false);
+        }
     };
 
     if (!isOpen) return null;
@@ -88,6 +94,7 @@ const AddPeopleModal = ({ isOpen, onClose }) => {
     return (
         <>
         <div className="modal-overlay" onClick={onClose}>
+        {loading && <Loader />}
             <div className="add-people-modal" onClick={e => e.stopPropagation()}>
                 <h2 className="modal-title">Add people to the board</h2>
                 <form onSubmit={handleSubmit}>

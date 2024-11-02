@@ -6,6 +6,7 @@ import './TaskModal.css';
 import axios from 'axios';
 import { FiChevronDown } from 'react-icons/fi';
 import deleteicon from "../images/Delete.png"
+import Loader from './Loader';
 
 const TaskModal = ({ isOpen, onClose, onSave }) => {
     const [title, setTitle] = useState('');
@@ -235,6 +236,7 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
 
     return (
         <div className="modal-overlay">
+            {loading && <Loader />}
             <div className="modal-content">
             <form onSubmit={handleSubmit} noValidate>
                     <div className="modal-body">
@@ -283,41 +285,44 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
                             </div>
                         </div>
 
-                         <div className="assign-container" ref={dropdownRef}>
-                            <label className="assign-label">Assign to</label>
-                            <div className="custom-dropdown">
-                                <button 
-                                    type="button"
-                                    className="dropdown-trigger"
-                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                                >
-                                    {assignee || 'Select User'}
-                                    <FiChevronDown size={20} />
-                                </button>
-                                
-                                {isDropdownOpen && (
-                                    <div className="dropdown-menu">
-                                        {users.map(user => (
-                                            <div key={user.id} className="dropdown-item">
-                                                <div className="user-info">
-                                                    <div className="user-avatar">
-                                                        {getInitials(user.email)}
-                                                    </div>
-                                                    <span className="user-email">{user.email}</span>
-                                                </div>
-                                                <button
-                                                    type="button"
-                                                    className="assign-button"
-                                                    onClick={() => handleAssign(user.email)}
-                                                >
-                                                    Assign
-                                                </button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
+                        <div className="assign-container" ref={dropdownRef}>
+    <label className="assign-label">Assign to</label>
+    <div className="custom-dropdown">
+        <button 
+            type="button"
+            className="dropdown-trigger"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+        >
+            {assignee || 'Select User'}
+            <FiChevronDown size={20} />
+        </button>
+        
+        {isDropdownOpen && (
+            <div className="dropdown-menu">
+                {users.map(user => (
+                    <div key={user.id} className="dropdown-item">
+                        <div className="user-info">
+                            <div className="user-avatar">
+                                {getInitials(user.email)}
                             </div>
+                            <span className="user-email">{user.email}</span>
                         </div>
+                        <button
+                            type="button"
+                            className="assign-button"
+                            onClick={() => {
+                                setAssignee(user.email);
+                                setIsDropdownOpen(false);
+                            }}
+                        >
+                            Assign
+                        </button>
+                    </div>
+                ))}
+            </div>
+        )}
+    </div>
+</div>
 
                         <div className="checklist-section">
                             <div className="checklist-header">

@@ -6,6 +6,7 @@ import DeleteConfirmationModal from './DeleteConfirmationModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Toast.css'; 
+import Loader from './Loader'
 
 const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChecklist, collapseToggle, onStatusChange, onDeleteTask,onEdit,assignTo,isAssigned,
     createdBy}) => {
@@ -20,6 +21,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
     const [showMenu, setShowMenu] = useState(false);
     const menuRef = useRef(null);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const currentUserEmail = JSON.parse(localStorage.getItem('user'))?.email;
     const isCreatedByOthers = createdBy?.email !== currentUserEmail;
@@ -147,20 +149,19 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
         return dueDateTime < today;
     };
 
-    // Helper function to get date label styles
     const getDateLabelStyles = () => {
         if (!dueDate) return {};
 
         if (status === 'done') {
             return {
-                backgroundColor: 'rgba(99, 192, 91, 1)', // Green background for completed tasks
+                backgroundColor: 'rgba(99, 192, 91, 1)', 
                 color: 'white'
             };
         }
 
         if (isPastDue(dueDate)) {
             return {
-                backgroundColor: 'rgba(207, 54, 54, 1)', // Red background for overdue tasks
+                backgroundColor: 'rgba(207, 54, 54, 1)', 
                 color: 'white'
             };
         }
@@ -198,6 +199,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
 
     const handleChecklistToggle = async (checklistItemId, isCompleted) => {
         if (isUpdating || !checklistItemId) return;
+        setLoading(true);
         setIsUpdating(true);
     
         try {
@@ -227,6 +229,7 @@ const TaskCard = ({ id, title, priority, checklist, dueDate, status, onUpdateChe
             console.error('Error updating checklist item:', error);
         } finally {
             setIsUpdating(false);
+            setLoading(false);
         }
     };
 
@@ -278,8 +281,8 @@ const truncateTitle = (title) => {
 
     return (
         <div className="task-card-wrapper">
+            {loading && <Loader />}
             <div className={`task-card-inner ${isExpanded ? 'expanded' : ''}`}>
-                {/* Priority and Menu */}
                 <div className="task-header">
                     <div className="priority-label">
                         <span 
@@ -318,15 +321,13 @@ const truncateTitle = (title) => {
                     </div>
                 </div>
 
-                {/* Title */}
                 <h3 
     className="task-heading" 
-    title={title} // Shows full title on hover
+    title={title} 
 >
     {title}
 </h3>
 
-                {/* Checklist Counter */}
                 <div className="checklist-counter">
                     <span>Checklist ({completedTasks}/{totalTasks})</span>
                     <button 
@@ -337,7 +338,6 @@ const truncateTitle = (title) => {
                     </button>
                 </div>
 
-                {/* Expandable Checklist */}
                 {isExpanded && (
                 <div className="checklist-expanded">
                     {localChecklist.map((item) => (

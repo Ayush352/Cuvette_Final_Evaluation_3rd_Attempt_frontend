@@ -8,6 +8,7 @@ import collapseAllIcon from '../images/collapseAll.png';
 import EditTaskModal from './EditTaskModal';
 import peopleIcon from "../images/people.png"
 import AddPeopleModal from './AddPeopleModal';
+import Loader from './Loader'
 
 const Column = ({ title, tasks = [], onAddTask, onUpdateChecklist,onStatusChange, onDeleteTask,onEditTask   }) => {
     const isToDoColumn = title.toLowerCase() === 'to do';
@@ -246,6 +247,8 @@ useEffect(() => {
     ];
 
     return (
+        <>
+        {loading && <Loader />}
         <div className='task-board-wrapper'>
             <div className="board-container">
 <div className="board-header">
@@ -321,6 +324,7 @@ useEffect(() => {
                 />
             </div>
         </div>
+        </>
     );
 };
 
