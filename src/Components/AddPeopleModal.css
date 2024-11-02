@@ -1,0 +1,172 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.add-people-modal {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 501;
+    color: #1A1A1A;
+    margin: 0px 0 12px 0;
+    margin-left: 22px;
+    margin-top: 10px;
+}
+
+.custom-dropdown {
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.dropdown-trigger {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1A1A1A;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    margin-top: 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background: #F3F4F6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #4B5563;
+}
+
+.user-email {
+    font-size: 14px;
+    color: #1A1A1A;
+}
+
+.assign-button {
+    padding: 6px 16px;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    background: white;
+    color: #1A1A1A;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.assign-button:hover {
+    background: #F3F4F6;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.cancel-button {
+    padding: 8px 16px;
+    border: 1px solid #FF0000;
+    border-radius: 8px;
+    background: white;
+    color: #FF0000;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 225px;
+}
+
+.add-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #00B5B5;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 225px;
+}
+
+.add-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #EF4444;
+    font-size: 14px;
+    margin: -10px 0 16px;
+    text-align: center;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+    background: #F3F4F6;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+    background: #CBD5E0;
+    border-radius: 3px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background: #A0AEC0;
+}
